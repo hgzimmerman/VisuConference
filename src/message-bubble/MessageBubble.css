@@ -1,0 +1,30 @@
+.MessageBubble {
+  font-size: large;
+  padding: .4em .6em;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 40vw;
+  text-align: left;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.GreenPill {
+  background-color: mediumseagreen;
+}
+
+.BluePill {
+  background-color: steelblue;
+}
+
+.MessageBubbleContainerRight {
+  display: block;
+  margin: .2em;
+  text-align: right;
+}
+
+.MessageBubbleContainerLeft {
+  display: block;
+  margin: .2em;
+  text-align: left;
+}

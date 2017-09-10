@@ -1,0 +1,20 @@
+.Inline {
+  display: inline;
+}
+
+.FullWidth {
+  width: 100%;
+}
+
+.FlexContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.FlexInput {
+  flex: 0 0 auto;
+}
+
+.FlexButton {
+  flex: 0 0 30px;
+}
