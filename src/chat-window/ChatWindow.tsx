@@ -26,16 +26,15 @@ let messageStore = createStore(
   (state: MessageStoreState, action: MessageStoreAction) => {
     switch (action.type) {
       case MessageStoreActionEnum.ADD_MESSAGE:
-        console.log("adding message: " + action.message.text);
         let newList: Array<MessageBubbleProps> = state.listOfMessages.slice(0);
         newList.push(action.message);
-        console.log("newList: " + newList);
         return { listOfMessages: newList};
       default:
         return state;
     }
   },
   { listOfMessages: [
+    // TODO: get rid of these default values
     {text : "Did you ever hear the tragedy of Darth Plagueis The Wise?", fromUser : 0},
     {text : "No?", fromUser : 1},
     {text : "I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… He had such a knowledge of the dark side, he could even keep the ones he cared about from dying.", fromUser : 0},
