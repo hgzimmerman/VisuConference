@@ -1,8 +1,8 @@
-import * as React from 'react';
+import * as React from "react";
 import "./chatwindow.css";
 import { ChatInput } from "../chat-input/ChatInput";
-import { MessageBubble, MessageBubbleProps } from "../message-bubble/MessageBubble";
-import {ConnectedMessageContainer, MessageContainer} from "../message-container/MessageContainer";
+import { MessageBubbleProps } from "../message-bubble/MessageBubble";
+import { ConnectedMessageContainer, MessageContainer } from "../message-container/MessageContainer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 

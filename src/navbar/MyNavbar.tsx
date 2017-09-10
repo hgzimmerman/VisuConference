@@ -1,7 +1,7 @@
-import * as React from 'react';
-import './MyNavbar.css';
+import * as React from "react";
+import "./MyNavbar.css";
 
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 
 class NavbarState {
     collapsed: boolean;

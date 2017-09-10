@@ -1,9 +1,9 @@
-import * as React from 'react';
-import './App.css';
-import { MyNavbar } from './navbar/MyNavbar';
-import {ChatWindow} from "./chat-window/ChatWindow";
+import * as React from "react";
+import "./App.css";
+import { MyNavbar } from "./navbar/MyNavbar";
+import { ChatWindow } from "./chat-window/ChatWindow";
 
-const logo = require('./logo.svg');
+const logo = require("./logo.svg");
 
 class App extends React.Component {
   render() {

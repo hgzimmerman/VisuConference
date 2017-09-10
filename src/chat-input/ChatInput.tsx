@@ -42,7 +42,6 @@ export class ChatInput extends React.Component {
     // alert("A message was submitted: " + this.state.value);
     this.setState({value: ""});
     // send the message
-    console.log("dispatching event: " + this.state.value);
     this.context.store.dispatch(
       {
         type: MessageStoreActionEnum.ADD_MESSAGE,

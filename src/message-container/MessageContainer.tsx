@@ -1,7 +1,6 @@
 import * as React from "react";
 import { MessageBubble, MessageBubbleProps } from "../message-bubble/MessageBubble";
 import "./MessageContainer.css";
-import { createStore } from "redux";
 import { connect } from "react-redux";
 import { MessageStoreState } from "../chat-window/ChatWindow";
 
@@ -13,7 +12,7 @@ export interface MessageContainerProps {
 
 
 export const MessageContainer: React.SFC<MessageContainerProps> = (props) => {
-  let { messages, ... rest } = props;
+  let { messages } = props;
 
   let bubbles = messages.map((message, index) => {
     return <MessageBubble key={index} text={message.text} fromUser={message.fromUser}/>;
