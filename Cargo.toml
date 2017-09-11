@@ -1,0 +1,15 @@
+[package]
+name = "VisuConferenceBackend"
+version = "0.1.0"
+authors = ["Henry Zimmerman <zimhen7@gmail.com>"]
+
+[dependencies]
+#markov = "0.0.33"
+markov = { git = "https://github.com/hgzimmerman/markov.git" }
+regex = "0.2.2"
+rocket = "0.3.2"
+rocket_codegen = "0.3.2"
+rocket_contrib = "0.3.2"
+serde = "1.0.14"
+serde_json = "1.0.3"
+serde_derive = "1.0.14"
