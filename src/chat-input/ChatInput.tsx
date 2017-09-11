@@ -39,18 +39,22 @@ export class ChatInput extends React.Component {
   }
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // alert("A message was submitted: " + this.state.value);
-    this.setState({value: ""});
-    // send the message
-    this.context.store.dispatch(
-      {
-        type: MessageStoreActionEnum.ADD_MESSAGE,
-        message: {
-          text: this.state.value,
-          fromUser: 0
+
+    // Only send the message if it contains text
+    if (this.state.value !== "") {
+      this.setState({value: ""});
+      // send the message
+      this.context.store.dispatch(
+        {
+          type: MessageStoreActionEnum.ADD_MESSAGE,
+          message: {
+            text: this.state.value,
+            fromUser: 0
+          }
         }
-      }
-    );
+      );
+    }
+
   }
 
   render() {
