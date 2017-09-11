@@ -42,6 +42,7 @@ export class ChatInput extends React.Component {
 
     // Only send the message if it contains text
     if (this.state.value !== "") {
+      // Reset the input box
       this.setState({value: ""});
       // send the message
       this.context.store.dispatch(
@@ -49,7 +50,7 @@ export class ChatInput extends React.Component {
           type: MessageStoreActionEnum.ADD_MESSAGE,
           message: {
             text: this.state.value,
-            fromUser: 0
+            fromUser: 0 // 0 represents the "self" (left) user for the moment
           }
         }
       );
