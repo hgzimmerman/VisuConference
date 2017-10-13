@@ -11,6 +11,7 @@
     "@types/react-redux": "^5.0.7",
     "@types/reactstrap": "^4.3.13",
     "@types/redux": "^3.6.0",
+    "@types/uuid-js": "^0.7.1",
     "bootstrap": "^4.0.0-alpha.6",
     "font-awesome": "^4.7.0",
     "install": "^0.10.1",
@@ -23,7 +24,8 @@
     "react-redux": "^5.0.6",
     "react-scripts-ts": "2.6.0",
     "reactstrap": "^4.8.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "uuid-js": "^0.7.5"
   },
   "scripts": {
     "start": "react-scripts-ts start",
