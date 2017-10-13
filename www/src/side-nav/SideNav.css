@@ -1,0 +1,22 @@
+.Sidenav {
+  border: solid 4px;
+  display:flex;
+  flex: 0 0 300px;
+  flex-direction: column;
+  /* background-color: aquamarine; */
+}
+
+.SideNavTitle {
+  text-align: center;
+  font-size: large;
+  border-bottom: solid 2px;
+}
+
+.UserListElement {
+  border-bottom: solid 2px;
+  list-style-type: none;
+}
+
+.UnorderedList {
+  padding-left: 0;
+}

@@ -35,10 +35,3 @@
   flex-direction: row;
 }
 
-.Sidenav {
-  text-align: center;
-  border: solid 4px;
-  display:flex;
-  flex: 0 0 300px;
-  /* background-color: aquamarine; */
-}

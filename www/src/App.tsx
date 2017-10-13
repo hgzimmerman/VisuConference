@@ -2,6 +2,7 @@ import * as React from "react";
 import "./App.css";
 import { MyNavbar } from "./navbar/MyNavbar";
 import { ChatWindow } from "./chat-window/ChatWindow";
+import { SideNav } from "./side-nav/SideNav";
 
 const logo = require("./logo.svg");
 
@@ -11,7 +12,8 @@ class App extends React.Component {
       <div className="App">
         <MyNavbar/>
         <div className="Container">
-          <div className="Sidenav"> Side nav stuff </div>
+          {/*<div className="Sidenav"> Users in chat. </div>*/}
+          <SideNav/>
           <ChatWindow/>
 
         </div>
