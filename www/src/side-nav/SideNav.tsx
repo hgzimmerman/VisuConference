@@ -14,7 +14,7 @@ export class SideNav extends React.Component {
           <div>
             <ul className="UnorderedList">
               <li className="UserListElement">
-                User 1
+                You
               </li>
               <li className="UserListElement">
                 User 2
