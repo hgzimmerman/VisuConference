@@ -33,11 +33,11 @@ export class MyNavbar extends React.Component {
               <div className="navbar navbar-inverse bg-inverse fixed-top" >
                 <a className="navbar-brand" href="#">VisuConference</a>
 
-                  <ul className="navbar-nav">
-                    <li className="nav-item">
-                      <a className="nav-link" href="#">Invite Others</a>
-                    </li>
-                  </ul>
+                  {/*<ul className="navbar-nav">*/}
+                    {/*<li className="nav-item">*/}
+                      {/*<a className="nav-link" href="#">Invite Others</a>*/}
+                    {/*</li>*/}
+                  {/*</ul>*/}
 
 
               </div>

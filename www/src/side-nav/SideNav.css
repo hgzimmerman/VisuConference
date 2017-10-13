@@ -30,7 +30,10 @@
 }
 
 
-
 .UnorderedList {
   padding-left: 0;
+}
+
+.Icon {
+  /*text-align: center;*/
 }
