@@ -8,14 +8,28 @@
 
 .SideNavTitle {
   text-align: center;
-  font-size: large;
+  font-size: larger;
   border-bottom: solid 2px;
+  background-color: gainsboro;
 }
 
 .UserListElement {
   border-bottom: solid 2px;
   list-style-type: none;
+  padding-left: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
+
+.YourUserElement {
+  background: linear-gradient(90deg, gainsboro, mediumseagreen );
+}
+
+.OtherUserElement {
+  background: linear-gradient(90deg, gainsboro, steelblue );
+}
+
+
 
 .UnorderedList {
   padding-left: 0;

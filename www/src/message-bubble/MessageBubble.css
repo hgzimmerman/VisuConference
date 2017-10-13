@@ -11,12 +11,12 @@
 }
 
 .GreenPill {
-  /* background-color: mediumseagreen; */
+  background-color: mediumseagreen;
   display: inline-block;
 }
 
 .BluePill {
-  /* background-color: steelblue; */
+  background-color: steelblue;
   display: inline-block;
 }
 

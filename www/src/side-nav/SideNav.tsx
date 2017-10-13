@@ -13,12 +13,13 @@ export class SideNav extends React.Component {
           </div>
           <div>
             <ul className="UnorderedList">
-              <li className="UserListElement">
+              <li className="UserListElement YourUserElement">
                 You
               </li>
-              <li className="UserListElement">
+              <li className="UserListElement OtherUserElement">
                 User 2
               </li>
+              
             </ul>
           </div>
         </div>

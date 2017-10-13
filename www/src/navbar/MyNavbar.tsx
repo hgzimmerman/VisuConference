@@ -3,6 +3,8 @@ import "./MyNavbar.css";
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 
+
+
 class NavbarState {
     collapsed: boolean;
 }
@@ -14,13 +16,13 @@ export class MyNavbar extends React.Component {
     constructor(props: {}) {
         super(props);
 
-        this.toggleNavbar = this.toggleNavbar.bind(this);
+        this.toggle = this.toggle.bind(this);
         this.state = {
             collapsed: false
         };
     }
 
-    toggleNavbar() {
+    toggle() {
         this.setState({
             collapsed: !this.state.collapsed
         });
@@ -28,20 +30,33 @@ export class MyNavbar extends React.Component {
     render() {
         return (
             <div className="MyNavbar">
-                <Navbar color="black" >
-                    {/*<NavbarToggler onClick={this.toggleNavbar} />*/}
-                    {/*<Collapse className="navbar-toggleable-md" isOpen={!this.state.collapsed}>*/}
-                        <NavbarBrand href="/#">VisuConference</NavbarBrand>
-                        {/*<Nav navbar>*/}
-                            {/*<NavItem>*/}
-                                {/*<NavLink href="/components/">Components</NavLink>*/}
-                            {/*</NavItem>*/}
-                            {/*<NavItem>*/}
-                                {/*<NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>*/}
-                            {/*</NavItem>*/}
-                        {/*</Nav>*/}
+              <div className="navbar navbar-inverse bg-inverse fixed-top" >
+                <a className="navbar-brand" href="#">VisuConference</a>
+
+                  <ul className="navbar-nav">
+                    <li className="nav-item">
+                      <a className="nav-link" href="#">Invite Others</a>
+                    </li>
+                  </ul>
+
+
+              </div>
+
+
+
+
+                {/*<Navbar color="light">*/}
+                    {/*<NavbarBrand href="/#">VisuConference</NavbarBrand>*/}
+                    {/*<NavbarToggler onClick={this.toggle} />*/}
+
+                    {/*<Collapse isOpen={this.state.collapsed} >*/}
+                      {/*<Nav className="ml-auto" >*/}
+                        {/*<NavItem>*/}
+                          {/*<NavLink href="#">Send Invite Link</NavLink>*/}
+                        {/*</NavItem>*/}
+                      {/*</Nav>*/}
                     {/*</Collapse>*/}
-                </Navbar>
+                {/*</Navbar>*/}
             </div>
         );
     }
