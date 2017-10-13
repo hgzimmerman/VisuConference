@@ -7,14 +7,17 @@
   text-align: left;
   display: inline-block;
   border-radius: 10px;
+  border: solid 2px;
 }
 
 .GreenPill {
-  background-color: mediumseagreen;
+  /* background-color: mediumseagreen; */
+  display: inline-block;
 }
 
 .BluePill {
-  background-color: steelblue;
+  /* background-color: steelblue; */
+  display: inline-block;
 }
 
 .MessageBubbleContainerRight {
@@ -28,3 +31,11 @@
   margin: .2em;
   text-align: left;
 }
+
+.Icon {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline;
+  vertical-align: middle;
+}
+

@@ -1,5 +1,7 @@
 import * as React from "react";
 import "./MessageBubble.css";
+import * as FontAwesome from "react-fontawesome";
+import { UncontrolledTooltip } from "reactstrap";
 
 export interface MessageBubbleProps {
   text: string;
@@ -24,8 +26,15 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
     let bubble: JSX.Element;
     if ( this.fromUser === 0 ) {
       bubble = (
-        <div className="MessageBubbleContainerLeft" >
-          <div className="MessageBubble GreenPill">
+        <div className="MessageBubbleContainerRight" >
+            <div className="Icon" id="TooltipRight">
+              <FontAwesome name="pencil" />
+            </div>
+            <UncontrolledTooltip placement="left" target="TooltipRight">
+              Edit message.
+            </UncontrolledTooltip>
+
+            <div className="MessageBubble GreenPill">
               {this.text}
           </div>
         </div>
@@ -33,10 +42,17 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
     } else {
       // its someone else
       bubble = (
-        <div className="MessageBubbleContainerRight" >
+        <div className="MessageBubbleContainerLeft" >
           <div className="MessageBubble BluePill">
             {this.text}
           </div>
+
+          <div className="Icon" id="TooltipLeft">
+                <FontAwesome name="flag" />
+          </div>
+          <UncontrolledTooltip placement="right" target="TooltipLeft">
+            Flag message for changes.
+          </UncontrolledTooltip>
         </div>
       );
     }
