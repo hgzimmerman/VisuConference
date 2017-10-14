@@ -3,6 +3,7 @@ import "./ChatInput.css";
 import { MessageBubbleProps } from "../message-bubble/MessageBubble";
 import { MessageStoreActionEnum } from "../chat-window/ChatWindow";
 import * as FontAwesome from "react-fontawesome";
+import {AppUserMessage} from "../datatypes/message";
 
 
 
@@ -52,10 +53,7 @@ export class ChatInput extends React.Component {
       this.context.store.dispatch(
         {
           type: MessageStoreActionEnum.ADD_MESSAGE,
-          message: {
-            text: this.state.value,
-            fromUser: 0 // 0 represents the "self" user for the moment
-          }
+          message: AppUserMessage.fromUserGeneratedText(this.state.value)
         }
       );
     }

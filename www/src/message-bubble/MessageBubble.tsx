@@ -2,39 +2,39 @@ import * as React from "react";
 import "./MessageBubble.css";
 import * as FontAwesome from "react-fontawesome";
 import { UncontrolledTooltip } from "reactstrap";
-import {EditMessageModalAndButton} from "../edit-message-modal-and-button/EditMessageModalAndButton";
-// import * from "uuid-js";
-var uuid = require("uuid-js");
-// import {Uuid} from "uuid-js";
+import { EditMessageModalAndButton } from "../edit-message-modal-and-button/EditMessageModalAndButton";
+import { AppUserMessage } from "../datatypes/message";
+
+
 
 export interface MessageBubbleProps {
-  text: string;
-  fromUser: number; // todo make this a dedicated user
-  // time: Date;
+  message: AppUserMessage;
 }
 
 export class MessageBubble extends React.Component<MessageBubbleProps, object> {
-  public text: string;
-  public fromUser: number;
-  // public time: Date;
-  public messageUuid: string;
+  // public text: string;
+  // public fromUser: number;
+  // // public time: Date;
+  // public messageUuid: string;
+  public message: AppUserMessage;
 
   constructor(props: MessageBubbleProps) {
     super(props);
 
-    this.text = props.text;
-    this.fromUser = props.fromUser;
-    this.messageUuid = uuid.create().toString(); // This uuid is used to allow the tooltip to create a unique id target
+    this.message = props.message;
+    // this.text = props.text;
+    // this.fromUser = props.fromUser;
+    // this.messageUuid = uuid.create().toString(); // This uuid is used to allow the tooltip to create a unique id target
     // this.time = props.time;
   }
 
   render() {
     let bubble: JSX.Element;
-    if ( this.fromUser === 0 ) {
+    if ( this.message.user === 0 ) {
       bubble = (
         <div className="MessageBubbleContainerRightWrapper">
           <div className="MessageBubbleVerticalAlignment" >
-            <EditMessageModalAndButton uuid={this.messageUuid} messageContent={this.text} />
+            <EditMessageModalAndButton message={this.message} />
               {/*<div className="Icon" id={"TooltipRight-" + this.messageUuid}>*/}
                 {/*<FontAwesome name="pencil" />*/}
               {/*</div>*/}
@@ -43,7 +43,7 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
               {/*</UncontrolledTooltip>*/}
 
               <div className="MessageBubble GreenPill">
-                {this.text}
+                {this.message.text}
             </div>
           </div>
         </div>
@@ -54,12 +54,12 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
         <div className="MessageBubbleContainerLeftWrapper">
           <div className="MessageBubbleVerticalAlignment" >
             <div className="MessageBubble BluePill">
-              {this.text}
+              {this.message.text}
             </div>
-            <div className="Icon" id={"TooltipLeft-" + this.messageUuid}>
+            <div className="Icon" id={"TooltipLeft-" + this.message.uuid}>
                   <FontAwesome name="flag"/>
             </div>
-            <UncontrolledTooltip placement="right" target={"TooltipLeft-" + this.messageUuid}>
+            <UncontrolledTooltip placement="right" target={"TooltipLeft-" + this.message.uuid}>
               Flag message for changes.
             </UncontrolledTooltip>
           </div>

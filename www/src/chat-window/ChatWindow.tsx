@@ -5,6 +5,9 @@ import { MessageBubbleProps } from "../message-bubble/MessageBubble";
 import { ConnectedMessageContainer, MessageContainer } from "../message-container/MessageContainer";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
+import { AppUserMessage } from "../datatypes/message";
+import { Networking } from "../networking/fetchText";
+import {isUndefined} from "util";
 // import thunk from 'redux-thunk';
 // import rootReducer from "../reducers";
 
@@ -12,23 +15,19 @@ import { createStore, applyMiddleware } from "redux";
 
 
 export interface MessageStoreState {
-  listOfMessages: Array<MessageBubbleProps>;
+  listOfMessages: Array<AppUserMessage>;
 }
 
 export interface MessageStoreAction {
   type: MessageStoreActionEnum;
-  message: MessageBubbleProps;
+  message: AppUserMessage;
 }
 
 export enum MessageStoreActionEnum {
   ADD_MESSAGE,
+  TOGGLE_FLAG_MESSAGE,
   EDIT_MESSAGE,
   DELETE_MESSAGE
-}
-
-async function fetchAsyncText (): Promise<MessageBubbleProps> {
-  const response = await fetch("http://localhost:8000/trump/4");
-  return await response.json();
 }
 
 
@@ -36,10 +35,10 @@ let messageStore = createStore(
   (state: MessageStoreState, action: MessageStoreAction) => {
     switch (action.type) {
       case MessageStoreActionEnum.ADD_MESSAGE:
-        let newList: Array<MessageBubbleProps> = state.listOfMessages.slice(0); // copy the existing list
+        let newList: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
         newList.push(action.message);
         // This currently adds a network-request message whenever a normal message is entered, it is an end goal for the network requests to happen when another event triggers it (ie a button, or detecting voice).
-        fetchAsyncText().then(
+        Networking.fetchTrumpText().then(
           message => {
             newList.push(message);
             let messageScrollingSection: HTMLElement | null = document.getElementById("Messages");
@@ -49,6 +48,35 @@ let messageStore = createStore(
           }
         );
         return { listOfMessages: newList};
+
+      case MessageStoreActionEnum.TOGGLE_FLAG_MESSAGE:
+        let existingMatchingMessage: AppUserMessage | undefined = state.listOfMessages.find((element) => {
+          return element.uuid === action.message.uuid;
+        });
+
+        if ( !isUndefined(existingMatchingMessage) ) {
+          existingMatchingMessage.flagged = !existingMatchingMessage.flagged;
+          let newList1: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
+
+          return { listOfMessages: newList1};
+        } else {
+          return { listOfMessages: state.listOfMessages};
+        }
+
+      case MessageStoreActionEnum.EDIT_MESSAGE:
+        let existingM: AppUserMessage | undefined = state.listOfMessages.find((element) => {
+          return element.uuid === action.message.uuid;
+        });
+
+        if ( !isUndefined(existingM) ) {
+          existingM.text = action.message.text;
+          let newList2: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
+
+          return { listOfMessages: newList2};
+        } else {
+          return { listOfMessages: state.listOfMessages};
+        }
+
       default:
         return state;
     }
