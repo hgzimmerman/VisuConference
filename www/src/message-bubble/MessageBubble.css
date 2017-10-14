@@ -10,13 +10,17 @@
   border: solid 1.5px;
 }
 
+.Flagged {
+  border: 2.5px solid indianred;
+}
+
 .GreenPill {
   background-color: mediumseagreen;
   display: inline-block;
 }
 
 .BluePill {
-  background-color: steelblue;
+  background-color: #7f9ab4;
   display: inline-block;
 }
 

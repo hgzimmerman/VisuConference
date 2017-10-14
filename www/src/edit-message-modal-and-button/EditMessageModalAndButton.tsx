@@ -46,7 +46,6 @@ export class EditMessageModalAndButton extends React.Component<EditMessageModalA
   }
 
 
-
   componentDidMount() {
     this.unsubscribe = this.context.store.subscribe(() => this.forceUpdate());
   }
