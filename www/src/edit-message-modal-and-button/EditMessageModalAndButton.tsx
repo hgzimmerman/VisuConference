@@ -58,7 +58,7 @@ export class EditMessageModalAndButton extends React.Component<EditMessageModalA
             </textarea>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={this.toggle} color={"success"}>Save</Button>
+            <Button onClick={this.toggle} color={"success"}>Save</Button> // TODO use a method to set this message's content higher up in the DOM tree.
             <Button onClick={this.toggle} color={"danger"}>Cancel</Button>
           </ModalFooter>
         </Modal>

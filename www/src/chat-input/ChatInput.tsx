@@ -2,6 +2,7 @@ import * as React from "react";
 import "./ChatInput.css";
 import { MessageBubbleProps } from "../message-bubble/MessageBubble";
 import { MessageStoreActionEnum } from "../chat-window/ChatWindow";
+import * as FontAwesome from "react-fontawesome";
 
 
 
@@ -63,9 +64,28 @@ export class ChatInput extends React.Component {
       <div className="ChatInput">
         <form onSubmit={this.handleSubmit} className="d-flex">
           <input className="form-control" type="text" placeholder="Chat" value={this.state.value} onChange={this.handleChange} />
+
+
+
+          <button className="btn btn-secondary">
+            <FontAwesome style={{color: "red"}} name="dot-circle-o"/>
+          </button>
           <button className="btn btn-secondary">Send</button>
         </form>
+
+        <div className="btn-group dropup" >
+          <button type="button" className="btn btn-secondary">Send</button>
+          <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span className="sr-only">Toggle Dropdown</span>
+          </button>
+          <div className="dropdown-menu">
+            <a className="dropdown-item" href="#">aoeuaoeu</a>
+            <a className="dropdown-item" href="#">Another action</a>
+            <a className="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
       </div>
+
     );
   }
 }
