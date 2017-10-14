@@ -2,6 +2,7 @@ import * as React from "react";
 import "./MessageBubble.css";
 import * as FontAwesome from "react-fontawesome";
 import { UncontrolledTooltip } from "reactstrap";
+import {EditMessageModalAndButton} from "../edit-message-modal-and-button/EditMessageModalAndButton";
 // import * from "uuid-js";
 var uuid = require("uuid-js");
 // import {Uuid} from "uuid-js";
@@ -33,12 +34,13 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
       bubble = (
         <div className="MessageBubbleContainerRightWrapper">
           <div className="MessageBubbleVerticalAlignment" >
-              <div className="Icon" id={"TooltipRight-" + this.messageUuid}>
-                <FontAwesome name="pencil" />
-              </div>
-              <UncontrolledTooltip placement="left" target={"TooltipRight-" + this.messageUuid}>
-                Edit message.
-              </UncontrolledTooltip>
+            <EditMessageModalAndButton uuid={this.messageUuid} messageContent={this.text} />
+              {/*<div className="Icon" id={"TooltipRight-" + this.messageUuid}>*/}
+                {/*<FontAwesome name="pencil" />*/}
+              {/*</div>*/}
+              {/*<UncontrolledTooltip placement="left" target={"TooltipRight-" + this.messageUuid}>*/}
+                {/*Edit message.*/}
+              {/*</UncontrolledTooltip>*/}
 
               <div className="MessageBubble GreenPill">
                 {this.text}

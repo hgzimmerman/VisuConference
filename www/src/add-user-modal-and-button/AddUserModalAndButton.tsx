@@ -34,7 +34,7 @@ export class AddUserModalAndButton extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.toggle} className="Icon" id={"AddUser"}>
+        <Button onClick={this.toggle} className="AddUserIcon" id={"AddUser"}>
           <FontAwesome name="plus"/>
         </Button>
         <UncontrolledTooltip placement="top" target={"AddUser"}>
