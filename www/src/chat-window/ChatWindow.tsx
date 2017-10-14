@@ -38,9 +38,7 @@ let messageStore = createStore(
       case MessageStoreActionEnum.ADD_MESSAGE:
         let newList: Array<MessageBubbleProps> = state.listOfMessages.slice(0); // copy the existing list
         newList.push(action.message);
-        // const res = await fetch("http://localhost:8000/text/10");
-        // const json = await res.json();
-        // let b: MessageBubbleProps = json as MessageBubbleProps;
+        // This currently adds a network-request message whenever a normal message is entered, it is an end goal for the network requests to happen when another event triggers it (ie a button, or detecting voice).
         fetchAsyncText().then(
           message => {
             newList.push(message);
