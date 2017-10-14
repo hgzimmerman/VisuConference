@@ -20,16 +20,20 @@
   display: inline-block;
 }
 
-.MessageBubbleContainerRight {
+.MessageBubbleContainerRightWrapper{
   display: block;
   margin: .2em;
   text-align: right;
 }
-
-.MessageBubbleContainerLeft {
+.MessageBubbleContainerLeftWrapper{
   display: block;
   margin: .2em;
   text-align: left;
+}
+
+.MessageBubbleVerticalAlignment{
+  display: inline-flex;
+  align-items: center;
 }
 
 .Icon {

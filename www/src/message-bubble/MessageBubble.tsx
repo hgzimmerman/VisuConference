@@ -31,33 +31,36 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
     let bubble: JSX.Element;
     if ( this.fromUser === 0 ) {
       bubble = (
-        <div className="MessageBubbleContainerRight" >
-            <div className="Icon" id={"TooltipRight-" + this.messageUuid}>
-              <FontAwesome name="pencil" />
-            </div>
-            <UncontrolledTooltip placement="left" target={"TooltipRight-" + this.messageUuid}>
-              Edit message.
-            </UncontrolledTooltip>
+        <div className="MessageBubbleContainerRightWrapper">
+          <div className="MessageBubbleVerticalAlignment" >
+              <div className="Icon" id={"TooltipRight-" + this.messageUuid}>
+                <FontAwesome name="pencil" />
+              </div>
+              <UncontrolledTooltip placement="left" target={"TooltipRight-" + this.messageUuid}>
+                Edit message.
+              </UncontrolledTooltip>
 
-            <div className="MessageBubble GreenPill">
-              {this.text}
+              <div className="MessageBubble GreenPill">
+                {this.text}
+            </div>
           </div>
         </div>
       );
     } else {
       // its someone else
       bubble = (
-        <div className="MessageBubbleContainerLeft" >
-          <div className="MessageBubble BluePill">
-            {this.text}
+        <div className="MessageBubbleContainerLeftWrapper">
+          <div className="MessageBubbleVerticalAlignment" >
+            <div className="MessageBubble BluePill">
+              {this.text}
+            </div>
+            <div className="Icon" id={"TooltipLeft-" + this.messageUuid}>
+                  <FontAwesome name="flag"/>
+            </div>
+            <UncontrolledTooltip placement="right" target={"TooltipLeft-" + this.messageUuid}>
+              Flag message for changes.
+            </UncontrolledTooltip>
           </div>
-
-          <div className="Icon" id={"TooltipLeft-" + this.messageUuid}>
-                <FontAwesome name="flag"/>
-          </div>
-          <UncontrolledTooltip placement="right" target={"TooltipLeft-" + this.messageUuid}>
-            Flag message for changes.
-          </UncontrolledTooltip>
         </div>
       );
     }

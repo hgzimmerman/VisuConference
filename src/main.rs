@@ -33,7 +33,7 @@ fn index() -> &'static str {
 }
 
 
-#[get("/text/<sentences>")]
+#[get("/trump/<sentences>")]
 fn text_trump(sentences: usize, chain: State<Mutex<ArcChain<String>>>) -> Json<GetTextResponse> {
     let locked_chain: &ArcChain<String> = &chain.lock().unwrap();
     let text = generate_text(sentences, locked_chain);

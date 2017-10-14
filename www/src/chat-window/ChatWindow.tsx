@@ -27,7 +27,7 @@ export enum MessageStoreActionEnum {
 }
 
 async function fetchAsyncText (): Promise<MessageBubbleProps> {
-  const response = await fetch("http://localhost:8000/text/4");
+  const response = await fetch("http://localhost:8000/trump/4");
   return await response.json();
 }
 
