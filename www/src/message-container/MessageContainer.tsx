@@ -19,7 +19,7 @@ export const MessageContainer: React.SFC<MessageContainerProps> = (props) => {
   });
 
   return (
-    <div className="MessageContainer">
+    <div className="MessageContainer" id="Messages">
       {
         bubbles
       }

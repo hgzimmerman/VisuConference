@@ -44,6 +44,10 @@ let messageStore = createStore(
         fetchAsyncText().then(
           message => {
             newList.push(message);
+            let messageScrollingSection: HTMLElement | null = document.getElementById("Messages");
+            if (messageScrollingSection != null) {
+              messageScrollingSection.scrollTop = messageScrollingSection.scrollHeight;
+            }
           }
         );
         return { listOfMessages: newList};
