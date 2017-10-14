@@ -38,6 +38,9 @@ export class ChatInput extends React.Component {
   handleChange(event: React.SyntheticEvent<HTMLInputElement>) {
     this.setState({value: event.currentTarget.value});
   }
+
+
+
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -51,12 +54,11 @@ export class ChatInput extends React.Component {
           type: MessageStoreActionEnum.ADD_MESSAGE,
           message: {
             text: this.state.value,
-            fromUser: 0 // 0 represents the "self" (left) user for the moment
+            fromUser: 0 // 0 represents the "self" user for the moment
           }
         }
       );
     }
-
   }
 
   render() {
@@ -65,25 +67,18 @@ export class ChatInput extends React.Component {
         <form onSubmit={this.handleSubmit} className="d-flex">
           <input className="form-control" type="text" placeholder="Chat" value={this.state.value} onChange={this.handleChange} />
 
-
-
-          <button className="btn btn-secondary">
-            <FontAwesome style={{color: "red"}} name="dot-circle-o"/>
-          </button>
-          <button className="btn btn-secondary">Send</button>
+          <div className="btn-group dropup" >
+            <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span className="sr-only">Toggle Dropdown</span>
+            </button>
+            <div className="dropdown-menu">
+                <FontAwesome style={{color: "red"}} name="dot-circle-o"/>
+            </div>
+            <button type="submit" className="btn btn-secondary">Send</button>
+          </div>
         </form>
 
-        <div className="btn-group dropup" >
-          <button type="button" className="btn btn-secondary">Send</button>
-          <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <div className="dropdown-menu">
-            <a className="dropdown-item" href="#">aoeuaoeu</a>
-            <a className="dropdown-item" href="#">Another action</a>
-            <a className="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
+
       </div>
 
     );
