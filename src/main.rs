@@ -65,6 +65,8 @@ fn create_chain() -> Result<ArcChain<String>, String> {
             let mut buf_reader = BufReader::new(&file);
             buf_reader.read_to_string(&mut file_contents).unwrap();
 
+            file_contents.replace("...", ".");
+
             let regex : Regex = Regex::new(r"[\r\n]").unwrap();
             let file_contents = regex.replace_all(file_contents.as_str(), ""); // remove newlines
 

@@ -1,9 +1,9 @@
 .MessageBubble {
-  font-size: large;
+  font-size: medium;
   padding: .4em .6em;
   word-wrap: break-word;
   white-space: normal;
-  max-width: 40vw;
+  max-width: 36vw;
   text-align: left;
   display: inline-block;
   border-radius: 10px;
