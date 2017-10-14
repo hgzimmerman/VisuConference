@@ -12,6 +12,10 @@ extern crate serde_derive;
 //extern crate serde;
 extern crate serde_json;
 
+extern crate rocket_cors;
+
+use rocket_cors::{AllowedOrigins, AllowedHeaders};
+
 use regex::Regex;
 use markov::ArcChain;
 use std::io::BufReader;
@@ -20,7 +24,7 @@ use std::fs::OpenOptions;
 use rocket_contrib::{Json, Value};
 use std::sync::Mutex;
 use rocket::State;
-
+use rocket::http::Method;
 
 
 #[get("/")]
@@ -34,14 +38,15 @@ fn text_trump(sentences: usize, chain: State<Mutex<ArcChain<String>>>) -> Json<G
     let locked_chain: &ArcChain<String> = &chain.lock().unwrap();
     let text = generate_text(sentences, locked_chain);
     Json(GetTextResponse {
-        message: text,
-        user: 2
+        text: text,
+        user: 1
     })
+
 }
 
 
 #[derive(Serialize)]
-struct GetTextResponse { message: String, user: usize }
+struct GetTextResponse { text: String, user: usize }
 
 
 fn generate_text(sentences: usize, chain: &ArcChain<String>) -> String {
@@ -76,6 +81,17 @@ fn create_chain() -> Result<ArcChain<String>, String> {
 
 fn main() {
 
+    let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000"]);
+    assert!(failed_origins.is_empty());
+
+    let options = rocket_cors::Cors {
+        allowed_origins: allowed_origins,
+        allowed_methods: vec![Method::Get].into_iter().map(From::from).collect(),
+        allowed_headers: AllowedHeaders::some(&["Authorization", "Accept"]),
+        allow_credentials: true,
+        ..Default::default()
+    };
+
 
     let trump_chain = create_chain().unwrap();
     let mutexed_trump_chain = Mutex::new(trump_chain);
@@ -83,5 +99,6 @@ fn main() {
     rocket::ignite()
         .manage(mutexed_trump_chain)
         .mount("/", routes![text_trump])
+        .attach(options)
         .launch();
 }

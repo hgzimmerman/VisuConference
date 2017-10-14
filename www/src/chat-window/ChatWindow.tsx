@@ -4,7 +4,11 @@ import { ChatInput } from "../chat-input/ChatInput";
 import { MessageBubbleProps } from "../message-bubble/MessageBubble";
 import { ConnectedMessageContainer, MessageContainer } from "../message-container/MessageContainer";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+// import thunk from 'redux-thunk';
+// import rootReducer from "../reducers";
+
+
 
 
 export interface MessageStoreState {
@@ -22,12 +26,40 @@ export enum MessageStoreActionEnum {
   DELETE_MESSAGE
 }
 
+
+function getText(): Promise<MessageBubbleProps> {
+  return fetch("http://localhost:8000/text/5")
+    .then( res => res.json())
+    .then(
+      (res: any) => {
+        let a: MessageBubbleProps = res as MessageBubbleProps;
+        console.log(res.data);
+        return a;
+        // console.log(`Getting new text: ${res.json()}`);
+      }
+    );
+}
+
+async function fetchAsyncText (): Promise<MessageBubbleProps> {
+  const response = await fetch("http://localhost:8000/text/10");
+  return await response.json();
+}
+
+
 let messageStore = createStore(
   (state: MessageStoreState, action: MessageStoreAction) => {
     switch (action.type) {
       case MessageStoreActionEnum.ADD_MESSAGE:
-        let newList: Array<MessageBubbleProps> = state.listOfMessages.slice(0);
+        let newList: Array<MessageBubbleProps> = state.listOfMessages.slice(0); // copy the existing list
         newList.push(action.message);
+        // const res = await fetch("http://localhost:8000/text/10");
+        // const json = await res.json();
+        // let b: MessageBubbleProps = json as MessageBubbleProps;
+        fetchAsyncText().then(
+          message => {
+            newList.push(message);
+          }
+        );
         return { listOfMessages: newList};
       default:
         return state;
@@ -54,6 +86,7 @@ let messageStore = createStore(
     ]
   }
 );
+
 
 
 export class ChatWindow extends React.Component {
