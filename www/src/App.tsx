@@ -3,8 +3,8 @@ import "./App.css";
 import { MyNavbar } from "./navbar/MyNavbar";
 import { ChatWindow } from "./chat-window/ChatWindow";
 import { SideNav } from "./side-nav/SideNav";
-import "tether";
-import "bootstrap";
+// import "tether";
+// import "bootstrap";
 
 const logo = require("./logo.svg");
 
