@@ -1,6 +1,6 @@
 .MessageBubble {
   font-size: medium;
-  padding: 5px 7px;
+  padding: 6px 10px;
   word-wrap: break-word;
   white-space: normal;
   max-width: 36vw;
@@ -11,7 +11,7 @@
 }
 
 .Flagged {
-  padding: 4px 6px;
+  padding: 5px 9px;
   border: 2.5px solid indianred;
 }
 
