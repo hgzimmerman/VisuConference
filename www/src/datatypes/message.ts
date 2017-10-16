@@ -16,25 +16,23 @@ export class AppUserMessage {
 
 
   public static fromIncomingUserMessage(message: IncomingUserMessage): AppUserMessage {
-    let m: AppUserMessage = {
+    return {
       text: message.text,
       user: message.user,
       flagged: false,
       uuid: uuid.create().toString(),
       editedBy: []
     };
-    return m;
   }
 
   public static fromUserGeneratedText(text: string): AppUserMessage {
-    let m: AppUserMessage = {
+    return {
       text: text,
       user: 0,
       flagged: false,
       uuid: uuid.create().toString(),
       editedBy: []
     };
-    return m;
   }
 
   public constructor() {

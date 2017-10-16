@@ -2,6 +2,9 @@
   display: inline;
 }
 
+.ChatInput{
+}
+
 .FullWidth {
   width: 100%;
 }
@@ -17,4 +20,13 @@
 
 .FlexButton {
   flex: 0 0 30px;
+}
+
+.Input {
+  height: 60px;
+  font-size: larger !important;
+}
+
+.SendButtons {
+  width: 120px;
 }

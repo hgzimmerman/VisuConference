@@ -23,13 +23,15 @@ export interface EditMessageModalAndButtonProps {
 }
 
 export class EditMessageModalAndButton extends React.Component<EditMessageModalAndButtonProps, object> {
-  public state: EditMessageModalAndButtonState;
-  private unsubscribe: Function;
+
 
   static contextTypes = {
     store: React.PropTypes.object
   };
   context: any;
+
+  public state: EditMessageModalAndButtonState;
+  private unsubscribe: Function;
 
   constructor(props: EditMessageModalAndButtonProps) {
     super(props);

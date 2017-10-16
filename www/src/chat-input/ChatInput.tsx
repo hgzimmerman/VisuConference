@@ -63,7 +63,7 @@ export class ChatInput extends React.Component {
     return (
       <div className="ChatInput">
         <form onSubmit={this.handleSubmit} className="d-flex">
-          <input className="form-control" type="text" placeholder="Chat" value={this.state.value} onChange={this.handleChange} />
+          <input className="Input form-control" type="text" placeholder="Chat" value={this.state.value} onChange={this.handleChange} />
 
           <div className="btn-group dropup" >
             <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,10 +72,9 @@ export class ChatInput extends React.Component {
             <div className="dropdown-menu">
                 <FontAwesome style={{color: "red"}} name="dot-circle-o"/>
             </div>
-            <button type="submit" className="btn btn-secondary">Send</button>
+            <button type="submit" className="btn btn-secondary SendButtons">Send</button>
           </div>
         </form>
-
 
       </div>
 
