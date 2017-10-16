@@ -4,8 +4,7 @@ import * as FontAwesome from "react-fontawesome";
 import { UncontrolledTooltip } from "reactstrap";
 import { EditMessageModalAndButton } from "../edit-message-modal-and-button/EditMessageModalAndButton";
 import { AppUserMessage } from "../datatypes/message";
-import {MessageStoreActionEnum} from "../chat-window/ChatWindow";
-
+import { MessageStoreActionEnum } from "../chat-window/ChatWindow";
 
 
 export interface MessageBubbleProps {

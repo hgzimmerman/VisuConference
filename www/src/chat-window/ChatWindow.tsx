@@ -1,15 +1,13 @@
 import * as React from "react";
 import "./chatwindow.css";
 import { ChatInput } from "../chat-input/ChatInput";
-import { MessageBubbleProps } from "../message-bubble/MessageBubble";
 import { ConnectedMessageContainer, MessageContainer } from "../message-container/MessageContainer";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { AppUserMessage } from "../datatypes/message";
 import { Networking } from "../networking/fetchText";
-import {isUndefined} from "util";
-// import thunk from 'redux-thunk';
-// import rootReducer from "../reducers";
+import { isUndefined } from "util";
+
 
 
 
