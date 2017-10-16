@@ -55,13 +55,6 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
         <div className="MessageBubbleContainerRightWrapper">
           <div className="MessageBubbleVerticalAlignment" >
             <EditMessageModalAndButton message={this.message} />
-              {/*<div className="Icon" id={"TooltipRight-" + this.messageUuid}>*/}
-                {/*<FontAwesome name="pencil" />*/}
-              {/*</div>*/}
-              {/*<UncontrolledTooltip placement="left" target={"TooltipRight-" + this.messageUuid}>*/}
-                {/*Edit message.*/}
-              {/*</UncontrolledTooltip>*/}
-
               <div className="MessageBubble GreenPill">
                 {this.message.text}
             </div>

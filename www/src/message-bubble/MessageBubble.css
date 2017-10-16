@@ -1,6 +1,6 @@
 .MessageBubble {
   font-size: medium;
-  padding: .4em .6em;
+  padding: 5px 7px;
   word-wrap: break-word;
   white-space: normal;
   max-width: 36vw;
@@ -11,6 +11,7 @@
 }
 
 .Flagged {
+  padding: 4px 6px;
   border: 2.5px solid indianred;
 }
 
@@ -20,7 +21,7 @@
 }
 
 .BluePill {
-  background-color: #7f9ab4;
+  background-color: #acd3f2;
   display: inline-block;
 }
 
