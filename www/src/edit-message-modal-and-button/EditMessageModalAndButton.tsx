@@ -1,5 +1,5 @@
 import * as React from "react";
-// import "./AddUserModalAndButton.css";
+import "./EditMessageModalAndButton.css";
 import { UncontrolledTooltip } from "reactstrap";
 import * as FontAwesome from "react-fontawesome";
 import Button from "reactstrap/lib/Button";
@@ -96,7 +96,7 @@ export class EditMessageModalAndButton extends React.Component<EditMessageModalA
         <Modal isOpen={this.state.modal} toggle={this.toggle} >
           <ModalHeader toggle={this.toggle}>Edit Message</ModalHeader>
           <ModalBody>
-            <textarea rows={5} style={{width: "100%", backgroundColor: "gainsboro", color: "#242424"}} value={this.state.text} onChange={this.handleChange} >
+            <textarea rows={5} className="TextArea" value={this.state.text} onChange={this.handleChange} >
             {/*{this.state.message.text}*/}
             </textarea>
           </ModalBody>

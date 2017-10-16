@@ -1,0 +1,8 @@
+.TextArea {
+  outline: none;
+  padding: 6px;
+  border: none;
+  width: 100%;
+  background-color: gainsboro;
+  color: #242424
+}
