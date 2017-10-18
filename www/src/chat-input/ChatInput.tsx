@@ -31,6 +31,7 @@ export class ChatInput extends React.Component {
   componentDidMount() {
     this.unsubscribe = this.context.store.subscribe(() => this.forceUpdate());
   }
+
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -71,6 +72,7 @@ export class ChatInput extends React.Component {
             </button>
             <div className="dropdown-menu">
                 <FontAwesome style={{color: "red"}} name="dot-circle-o"/>
+              {/*{JSON.stringify(this.context.store) + "hello"}*/}
             </div>
             <button type="submit" className="btn btn-secondary SendButtons">Send</button>
           </div>
