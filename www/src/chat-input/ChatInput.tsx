@@ -3,11 +3,7 @@ import "./ChatInput.css";
 import { MessageBubbleProps } from "../message-bubble/MessageBubble";
 import { MessageStoreActionEnum } from "../chat-window/ChatWindow";
 import * as FontAwesome from "react-fontawesome";
-import {AppUserMessage} from "../datatypes/message";
-
-
-
-
+import { AppUserMessage } from "../datatypes/message";
 
 
 
@@ -71,7 +67,10 @@ export class ChatInput extends React.Component {
               <span className="sr-only">Toggle Dropdown</span>
             </button>
             <div className="dropdown-menu">
+              <div>
                 <FontAwesome style={{color: "red"}} name="dot-circle-o"/>
+                Currently Recording
+              </div>
               {/*{JSON.stringify(this.context.store) + "hello"}*/}
             </div>
             <button type="submit" className="btn btn-secondary SendButtons">Send</button>
