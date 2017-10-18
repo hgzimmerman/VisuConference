@@ -14,6 +14,7 @@ import { isUndefined } from "util";
 
 export interface MessageStoreState {
   listOfMessages: Array<AppUserMessage>;
+  isRecording: boolean;
 }
 
 export interface MessageStoreAction {
@@ -25,7 +26,8 @@ export enum MessageStoreActionEnum {
   ADD_MESSAGE,
   TOGGLE_FLAG_MESSAGE,
   EDIT_MESSAGE,
-  DELETE_MESSAGE
+  DELETE_MESSAGE,
+  TOGGLE_RECORDING
 }
 
 
@@ -45,7 +47,7 @@ let messageStore = createStore(
             }
           }
         );
-        return { listOfMessages: newList};
+        return { listOfMessages: newList, isRecording: state.isRecording};
 
       case MessageStoreActionEnum.TOGGLE_FLAG_MESSAGE:
         let existingMatchingMessage: AppUserMessage | undefined = state.listOfMessages.find((element) => {
@@ -58,7 +60,7 @@ let messageStore = createStore(
 
           return { listOfMessages: newList1};
         } else {
-          return { listOfMessages: state.listOfMessages};
+          return { listOfMessages: state.listOfMessages, isRecording: state.isRecording};
         }
 
       case MessageStoreActionEnum.EDIT_MESSAGE:
@@ -70,34 +72,20 @@ let messageStore = createStore(
           existingM.text = action.message.text;
           let newList2: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
 
-          return { listOfMessages: newList2};
+          return { listOfMessages: newList2, isRecording: state.isRecording};
         } else {
-          return { listOfMessages: state.listOfMessages};
+          return { listOfMessages: state.listOfMessages, isRecording: state.isRecording};
         }
+
+      case MessageStoreActionEnum.TOGGLE_RECORDING:
+        return { listOfMessages: state.listOfMessages, isRecording: !state.isRecording};
 
       default:
         return state;
     }
   },
-  { listOfMessages: [
-    // TODO: get rid of these default values
-    // {text : "Did you ever hear the tragedy of Darth Plagueis The Wise?", fromUser : 0},
-
-    // {text : "Your text", fromUser : 0},
-
-    // {text : "Their text", fromUser : 1},
-    
-    // {text : "Your text again", fromUser : 0},
-
-    // {text : "No?", fromUser : 1},
-    // {text : "I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… He had such a knowledge of the dark side, he could even keep the ones he cared about from dying.", fromUser : 0},
-    // {text : "He could actually save people from death?", fromUser : 1},
-    // {text : "The dark side of the Force is a pathway to many abilities some consider to be unnatural. ", fromUser : 0},
-    // {text : "What happened to him?", fromUser : 1},
-    // {text : "He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself.", fromUser : 0},
-    // {text : "Is it possible to learn this power?", fromUser : 1},
-    // {text : "Not from a Jedi.", fromUser : 0}
-    ]
+  {
+    listOfMessages: [ ],
   }
 );
 
