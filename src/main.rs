@@ -25,6 +25,8 @@ use rocket_contrib::{Json, Value};
 use std::sync::Mutex;
 use rocket::State;
 use rocket::http::Method;
+use rocket::response::NamedFile;
+use std::path::{Path, PathBuf};
 
 
 #[get("/")]
@@ -41,7 +43,12 @@ fn text_trump(sentences: usize, chain: State<Mutex<ArcChain<String>>>) -> Json<G
         text: text,
         user: 1
     })
+}
 
+/// Need to run `npm run build` to update the files for distribution.
+#[get("/<file..>", rank=4)]
+fn build_files(file: PathBuf) -> Option<NamedFile> {
+    NamedFile::open(Path::new("www/build/").join(file)).ok()
 }
 
 
@@ -83,7 +90,7 @@ fn create_chain() -> Result<ArcChain<String>, String> {
 
 fn main() {
 
-    let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000"]);
+    let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000", "http://localhost:8000"]);
     assert!(failed_origins.is_empty());
 
     let options = rocket_cors::Cors {
@@ -100,7 +107,7 @@ fn main() {
 
     rocket::ignite()
         .manage(mutexed_trump_chain)
-        .mount("/", routes![text_trump])
+        .mount("/", routes![text_trump, build_files])
         .attach(options)
         .launch();
 }
