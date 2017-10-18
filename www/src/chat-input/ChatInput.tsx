@@ -63,7 +63,7 @@ export class ChatInput extends React.Component {
           <input className="Input form-control" type="text" placeholder="Chat" value={this.state.value} onChange={this.handleChange} />
 
           <div className="btn-group dropup" >
-            <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" className="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span className="sr-only">Toggle Dropdown</span>
             </button>
             <div className="dropdown-menu">
@@ -73,7 +73,7 @@ export class ChatInput extends React.Component {
               </div>
               {/*{JSON.stringify(this.context.store) + "hello"}*/}
             </div>
-            <button type="submit" className="btn btn-secondary SendButtons">Send</button>
+            <button type="submit" className="btn btn-light SendButtons">Send</button>
           </div>
         </form>
 

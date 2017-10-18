@@ -29,8 +29,8 @@ export class MyNavbar extends React.Component {
     }
     render() {
         return (
-            <div className="MyNavbar">
-              <div className="navbar navbar-inverse bg-inverse fixed-top" >
+            <div className="MyNavbar bg-dark">
+              <nav className="navbar-dark navbar" >
                 <a className="navbar-brand" href="#">VisuConference</a>
 
                   {/*<ul className="navbar-nav">*/}
@@ -40,7 +40,7 @@ export class MyNavbar extends React.Component {
                   {/*</ul>*/}
 
 
-              </div>
+              </nav>
 
 
 
