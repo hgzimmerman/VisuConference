@@ -1,5 +1,6 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
+#![feature(const_atomic_bool_new)]
 
 extern crate markov;
 extern crate regex;
@@ -12,9 +13,9 @@ extern crate serde_derive;
 //extern crate serde;
 extern crate serde_json;
 
-extern crate rocket_cors;
+//extern crate rocket_cors;
 
-use rocket_cors::{AllowedOrigins, AllowedHeaders};
+//use rocket_cors::{AllowedOrigins, AllowedHeaders};
 
 use regex::Regex;
 use markov::ArcChain;
@@ -90,16 +91,16 @@ fn create_chain() -> Result<ArcChain<String>, String> {
 
 fn main() {
 
-    let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000", "http://localhost:8000"]);
-    assert!(failed_origins.is_empty());
-
-    let options = rocket_cors::Cors {
-        allowed_origins: allowed_origins,
-        allowed_methods: vec![Method::Get].into_iter().map(From::from).collect(),
-        allowed_headers: AllowedHeaders::some(&["Authorization", "Accept"]),
-        allow_credentials: true,
-        ..Default::default()
-    };
+//    let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000", "http://localhost:8000"]);
+//    assert!(failed_origins.is_empty());
+//
+//    let options = rocket_cors::Cors {
+//        allowed_origins: allowed_origins,
+//        allowed_methods: vec![Method::Get].into_iter().map(From::from).collect(),
+//        allowed_headers: AllowedHeaders::some(&["Authorization", "Accept"]),
+//        allow_credentials: true,
+//        ..Default::default()
+//    };
 
 
     let trump_chain = create_chain().unwrap();
@@ -108,6 +109,6 @@ fn main() {
     rocket::ignite()
         .manage(mutexed_trump_chain)
         .mount("/", routes![text_trump, build_files])
-        .attach(options)
+//        .attach(options)
         .launch();
 }
