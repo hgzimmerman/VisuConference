@@ -12,8 +12,18 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
+import { BrowserRouter, HashRouter, Route} from "react-router-dom";
+import { SideNav } from "./side-nav/SideNav";
+import { Switch } from "react-router";
+
+
 ReactDOM.render(
-  <App />,
+  <BrowserRouter>
+    <Switch>
+      <Route exact={true} path={"/"} component={App}/>
+      <Route path={"/group"} component={SideNav}/>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById("root") as HTMLElement
 );
 registerServiceWorker();

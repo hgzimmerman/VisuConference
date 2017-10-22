@@ -2,6 +2,7 @@ import * as React from "react";
 import "./MyNavbar.css";
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
+import {Link} from "react-router-dom";
 
 
 
@@ -33,11 +34,13 @@ export class MyNavbar extends React.Component {
               <nav className="navbar-dark navbar" >
                 <a className="navbar-brand" href="#">VisuConference</a>
 
-                  {/*<ul className="navbar-nav">*/}
-                    {/*<li className="nav-item">*/}
-                      {/*<a className="nav-link" href="#">Invite Others</a>*/}
-                    {/*</li>*/}
-                  {/*</ul>*/}
+
+
+                  <ul className="navbar-nav d-sm-none ">
+                    <li className="nav-item">
+                      <Link to="/group">ChatRoom</Link>
+                    </li>
+                  </ul>
 
 
               </nav>

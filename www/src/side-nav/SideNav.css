@@ -1,10 +1,10 @@
-.Sidenav {
-  border: solid 4px;
-  display:flex;
-  flex: 0 0 300px;
-  flex-direction: column;
-  /* background-color: aquamarine; */
-}
+/*.SidenavWrapper {*/
+  /*border: solid 4px;*/
+  /*!*display:flex;*!*/
+  /*flex: 0 0 300px;*/
+  /*flex-direction: column;*/
+  /*!* background-color: aquamarine; *!*/
+/*}*/
 
 .SideNavTitle {
   text-align: center;

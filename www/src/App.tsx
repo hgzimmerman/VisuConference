@@ -14,7 +14,9 @@ class App extends React.Component {
       <div className="App">
         <MyNavbar/>
         <div className="Container">
-          <SideNav/>
+          <div className="SideNavWrapper d-none d-sm-flex">
+            <SideNav />
+          </div>
           <ChatWindow/>
 
         </div>
