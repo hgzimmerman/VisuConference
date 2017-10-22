@@ -30,10 +30,7 @@ use rocket::response::NamedFile;
 use std::path::{Path, PathBuf};
 
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
+
 
 
 #[get("/trump/<sentences>")]
@@ -50,6 +47,11 @@ fn text_trump(sentences: usize, chain: State<Mutex<ArcChain<String>>>) -> Json<G
 #[get("/<file..>", rank=4)]
 fn build_files(file: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("www/build/").join(file)).ok()
+}
+
+#[get("/", rank=2)]
+fn index() -> Option<NamedFile> {
+    NamedFile::open(Path::new("www/build/index.html")).ok()
 }
 
 
@@ -108,7 +110,7 @@ fn main() {
 
     rocket::ignite()
         .manage(mutexed_trump_chain)
-        .mount("/", routes![text_trump, build_files])
+        .mount("/", routes![text_trump, build_files, index])
 //        .attach(options)
         .launch();
 }
