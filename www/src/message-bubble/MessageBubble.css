@@ -10,6 +10,18 @@
   border: solid 1.5px;
 }
 
+.FullWidthMessageBubble {
+  font-size: medium;
+  padding: 6px 10px;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 70vw;
+  text-align: left;
+  display: inline-block;
+  border-radius: 10px;
+  border: solid 1.5px;
+}
+
 .Flagged {
   padding: 5px 9px;
   border: 2.5px solid indianred;

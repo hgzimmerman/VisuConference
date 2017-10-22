@@ -54,8 +54,11 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
         <div className="MessageBubbleContainerRightWrapper">
           <div className="MessageBubbleVerticalAlignment" >
             <EditMessageModalAndButton message={this.message} />
-              <div className="MessageBubble GreenPill">
+              <div className="MessageBubble GreenPill d-none d-sm-block">
                 {this.message.text}
+            </div>
+            <div className="FullWidthMessageBubble GreenPill d-sm-none ">
+              {this.message.text}
             </div>
           </div>
         </div>
@@ -65,9 +68,13 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
       bubble = (
         <div className="MessageBubbleContainerLeftWrapper">
           <div className="MessageBubbleVerticalAlignment" >
-            <div className={"MessageBubble BluePill" + flaggedClass}>
+            <div className={"MessageBubble BluePill d-none d-sm-block" + flaggedClass}>
               {this.message.text}
             </div>
+            <div className={"FullWidthMessageBubble BluePill d-sm-none" + flaggedClass}>
+              {this.message.text}
+            </div>
+
             <div className="Icon" id={"TooltipLeft-" + this.message.uuid} onClick={this.flagMessage}>
                   <FontAwesome name="flag"/>
             </div>
