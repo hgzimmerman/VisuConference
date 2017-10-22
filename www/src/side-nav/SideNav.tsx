@@ -1,9 +1,7 @@
 import * as React from "react";
 import "./SideNav.css";
-import { UncontrolledTooltip } from "reactstrap";
-import * as FontAwesome from "react-fontawesome";
-import Button from "reactstrap/lib/Button";
-import {AddUserModalAndButton} from "../add-user-modal-and-button/AddUserModalAndButton";
+import "bootstrap/dist/css/bootstrap.css";
+import { AddUserModalAndButton } from "../add-user-modal-and-button/AddUserModalAndButton";
 
 
 export class SideNav extends React.Component {
@@ -11,7 +9,7 @@ export class SideNav extends React.Component {
 
   render() {
     return (
-        <div className="Sidenav">
+        <div className="Sidenav  d-none d-sm-block">
           <div className="SideNavTitle">
           Connected Users
           </div>
@@ -24,14 +22,7 @@ export class SideNav extends React.Component {
                 User 2
               </li>
               <li className="UserListElement">
-                {/*<div className="Icon" id={"AddUser"}>*/}
-
                   <AddUserModalAndButton/>
-                  {/*<Button id={"AddUser"} className="Icon">*/}
-                    {/*<FontAwesome name="plus"/>*/}
-                  {/*</Button>*/}
-                {/*</div>*/}
-
               </li>
             </ul>
           </div>
