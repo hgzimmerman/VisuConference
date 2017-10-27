@@ -2,7 +2,8 @@ import * as React from "react";
 import "./MyNavbar.css";
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import * as FontAwesome from "react-fontawesome";
 
 
 
@@ -30,17 +31,21 @@ export class MyNavbar extends React.Component {
     }
     render() {
         return (
-            <div className="MyNavbar bg-dark">
-              <nav className="navbar-dark navbar" >
+            <div className="">
+              <nav className="navbar-dark bg-dark navbar navbar-expand-md" >
                 <a className="navbar-brand" href="#">VisuConference</a>
 
+                 {/*<ul className="navbar-nav ml-auto">*/}
+                    {/*<li className="nav-item d-sm-none">*/}
+                      <Link className="ml-auto nav-item d-sm-none" to="/group">Connected Users</Link>
+                    {/*</li>*/}
+                    {/*<li className={"nav-item"}>*/}
+                      {/*<Link className="ml-auto nav-item" to="#">*/}
+                        <FontAwesome className="ml-auto nav-item" name="info-circle"/>
+                      {/*</Link>*/}
+                    {/*</li>*/}
+                  {/*</ul>*/}
 
-
-                  <ul className="navbar-nav d-sm-none ">
-                    <li className="nav-item">
-                      <Link to="/group">ChatRoom</Link>
-                    </li>
-                  </ul>
 
 
               </nav>
@@ -62,5 +67,6 @@ export class MyNavbar extends React.Component {
                 {/*</Navbar>*/}
             </div>
         );
+
     }
 }

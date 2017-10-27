@@ -12,6 +12,11 @@ extern crate rocket_contrib;
 extern crate serde_derive;
 //extern crate serde;
 extern crate serde_json;
+extern crate time;
+
+#[macro_use]
+extern crate log;
+extern crate simplelog;
 
 //extern crate rocket_cors;
 
@@ -28,6 +33,8 @@ use rocket::State;
 use rocket::http::Method;
 use rocket::response::NamedFile;
 use std::path::{Path, PathBuf};
+use simplelog::{Config, TermLogger, WriteLogger, CombinedLogger, LogLevelFilter};
+use std::fs::File;
 
 
 
@@ -104,6 +111,14 @@ fn main() {
 //        ..Default::default()
 //    };
 
+
+    const LOGFILE_NAME: &'static str = "visuconference.log";
+    CombinedLogger::init(
+        vec![
+            TermLogger::new(LogLevelFilter::Info, Config::default()).unwrap(),
+            WriteLogger::new(LogLevelFilter::Trace, Config::default(), File::create(LOGFILE_NAME).unwrap()),
+        ]
+    ).unwrap();
 
     let trump_chain = create_chain().unwrap();
     let mutexed_trump_chain = Mutex::new(trump_chain);
