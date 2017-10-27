@@ -24,6 +24,7 @@ export interface MessageStoreAction {
 
 export enum MessageStoreActionEnum {
   ADD_MESSAGE,
+  RECEIVE_MESSAGE,
   TOGGLE_FLAG_MESSAGE,
   EDIT_MESSAGE,
   DELETE_MESSAGE,
@@ -40,7 +41,15 @@ let messageStore = createStore(
         // This currently adds a network-request message whenever a normal message is entered, it is an end goal for the network requests to happen when another event triggers it (ie a button, or detecting voice).
         Networking.fetchTrumpText().then(
           message => {
-            newList.push(message);
+            // newList.push(message);
+            messageStore.dispatch(
+                {
+                  type: MessageStoreActionEnum.RECEIVE_MESSAGE,
+                  message: message
+                }
+            );
+
+
             let messageScrollingSection: HTMLElement | null = document.getElementById("Messages");
             if (messageScrollingSection != null) {
               messageScrollingSection.scrollTop = messageScrollingSection.scrollHeight;
@@ -48,6 +57,16 @@ let messageStore = createStore(
           }
         );
         return { listOfMessages: newList, isRecording: state.isRecording};
+
+      case MessageStoreActionEnum.RECEIVE_MESSAGE:
+        let newList1: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
+        newList1.push(action.message);
+
+        let messageScrollingSection1: HTMLElement | null = document.getElementById("Messages");
+        if (messageScrollingSection1 != null) {
+          messageScrollingSection1.scrollTop = messageScrollingSection1.scrollHeight;
+        }
+        return { listOfMessages: newList1, isRecording: state.isRecording};
 
       case MessageStoreActionEnum.TOGGLE_FLAG_MESSAGE:
         let existingMatchingMessage: AppUserMessage | undefined = state.listOfMessages.find((element) => {
