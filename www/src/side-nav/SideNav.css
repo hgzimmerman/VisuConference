@@ -30,6 +30,10 @@
   background: linear-gradient(90deg, gainsboro, #acd3f2 );
 }
 
+.ThirdUserElement {
+  background: linear-gradient(90deg, gainsboro, lightpink );
+}
+
 
 .UnorderedList {
   padding-left: 0;

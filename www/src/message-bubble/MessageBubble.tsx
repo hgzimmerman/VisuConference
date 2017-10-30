@@ -63,7 +63,7 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
           </div>
         </div>
       );
-    } else {
+    } else if ( this.message.user === 1 ) {
       // its someone else
       bubble = (
         <div className="MessageBubbleContainerLeftWrapper">
@@ -83,6 +83,27 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
             </UncontrolledTooltip>
           </div>
         </div>
+      );
+    } else {
+      // its someone else
+      bubble = (
+          <div className="MessageBubbleContainerLeftWrapper">
+            <div className="MessageBubbleVerticalAlignment" >
+              <div className={"MessageBubble PurplePill d-none d-sm-block" + flaggedClass}>
+                {this.message.text}
+              </div>
+              <div className={"FullWidthMessageBubble PurplePill d-sm-none" + flaggedClass}>
+                {this.message.text}
+              </div>
+
+              <div className="Icon" id={"TooltipLeft-" + this.message.uuid} onClick={this.flagMessage}>
+                <FontAwesome name="flag"/>
+              </div>
+              <UncontrolledTooltip placement="right" target={"TooltipLeft-" + this.message.uuid}>
+                Flag message for changes.
+              </UncontrolledTooltip>
+            </div>
+          </div>
       );
     }
 

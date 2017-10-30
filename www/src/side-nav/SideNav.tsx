@@ -19,7 +19,10 @@ export class SideNav extends React.Component {
                 You
               </li>
               <li className="UserListElement OtherUserElement">
-                User 2
+                DT Collaborator
+              </li>
+              <li className="UserListElement ThirdUserElement">
+                Actual Collaborator
               </li>
               <li className="UserListElement">
                   <AddUserModalAndButton/>

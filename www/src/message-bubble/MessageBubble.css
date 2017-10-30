@@ -32,6 +32,11 @@
   display: inline-block;
 }
 
+.PurplePill {
+  background-color: lightpink;
+  display: inline-block;
+}
+
 .BluePill {
   background-color: #acd3f2;
   display: inline-block;

@@ -1,6 +1,7 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 #![feature(const_atomic_bool_new)]
+#![feature(custom_derive)]
 
 extern crate markov;
 extern crate regex;
@@ -35,18 +36,33 @@ use rocket::response::NamedFile;
 use std::path::{Path, PathBuf};
 use simplelog::{Config, TermLogger, WriteLogger, CombinedLogger, LogLevelFilter};
 use std::fs::File;
+use std::collections::HashMap;
 
 
+#[derive(FromForm)]
+struct TextRequest {
+    sentences: usize,
+    text: String
+}
 
 
+#[get("/trump?<text_request>")]
+fn text_trump(text_request: TextRequest, chain: State<Mutex<ArcChain<String>>>, map: State<Mutex<HashMap<String,String>>>) -> Json<GetTextResponse> {
 
-#[get("/trump/<sentences>")]
-fn text_trump(sentences: usize, chain: State<Mutex<ArcChain<String>>>) -> Json<GetTextResponse> {
-    let locked_chain: &ArcChain<String> = &chain.lock().unwrap();
-    let text = generate_text(sentences, locked_chain);
+
+    let text: String;
+    let user: usize;
+    if let Some(response) = map.lock().unwrap().get(text_request.text.to_lowercase().as_str()) {
+        text = response.clone();
+        user = 2;
+    } else {
+        let locked_chain: &ArcChain<String> = &chain.lock().unwrap();
+        text = generate_text(text_request.sentences, locked_chain);
+        user = 1
+    }
     Json(GetTextResponse {
         text: text,
-        user: 1
+        user: user
     })
 }
 
@@ -98,6 +114,16 @@ fn create_chain() -> Result<ArcChain<String>, String> {
     }
 }
 
+fn create_map() -> HashMap<String, String> {
+    let mut hash_map: HashMap<String, String> = HashMap::new();
+    // Put all statements and requests for user 2 here.
+    // All keys should be lowercase.
+    hash_map.insert(String::from("hello"), String::from("Hello fellow teammate."));
+
+
+    hash_map
+}
+
 fn main() {
 
 //    let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000", "http://localhost:8000"]);
@@ -123,8 +149,12 @@ fn main() {
     let trump_chain = create_chain().unwrap();
     let mutexed_trump_chain = Mutex::new(trump_chain);
 
+    let normal_user_map: HashMap<String, String> = create_map();
+    let mutexed_user_map: Mutex<HashMap<String, String >> = Mutex::new(normal_user_map);
+
     rocket::ignite()
         .manage(mutexed_trump_chain)
+        .manage(mutexed_user_map)
         .mount("/", routes![text_trump, build_files, index])
 //        .attach(options)
         .launch();

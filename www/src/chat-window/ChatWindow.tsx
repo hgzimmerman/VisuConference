@@ -39,7 +39,7 @@ let messageStore = createStore(
         let newList: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
         newList.push(action.message);
         // This currently adds a network-request message whenever a normal message is entered, it is an end goal for the network requests to happen when another event triggers it (ie a button, or detecting voice).
-        Networking.fetchTrumpText().then(
+        Networking.fetchTrumpText(action.message.text).then(
           message => {
             // newList.push(message);
             messageStore.dispatch(
