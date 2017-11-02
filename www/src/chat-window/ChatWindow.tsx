@@ -34,6 +34,11 @@ export enum MessageStoreActionEnum {
 
 const replacementWords = [
   "Hello",
+  "Ok",
+  "Like what?",
+  "What can we do about that?",
+  "Any other feedback?",
+  "That shouldn't be difficult",
   "Goodbye"
 ];
 

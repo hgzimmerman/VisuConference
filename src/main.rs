@@ -118,8 +118,13 @@ fn create_map() -> HashMap<String, String> {
     let mut hash_map: HashMap<String, String> = HashMap::new();
     // Put all statements and requests for user 2 here.
     // All keys should be lowercase.
-    hash_map.insert(String::from("hello"), String::from("Hello fellow teammate."));
-
+    hash_map.insert(String::from("hello"), String::from("Hi, it seems that everyone is here and set up, Let’s start."));
+    hash_map.insert(String::from("ok"), String::from("After presenting the project sponsors with our prototype, they have a few changes to suggest."));
+    hash_map.insert(String::from("like what?"), String::from("They didn’t like the color scheme that we selected and wanted it to fit their corporate design policy."));
+    hash_map.insert(String::from("what can we do about that?"), String::from("We can switch to their corporate color scheme and alter the contrast to satisfy our colorblind users."));
+    hash_map.insert(String::from("any other feedback?"), String::from("They wanted to move the invite users button from the bottom right side of the screen to the top left."));
+    hash_map.insert(String::from("that shouldn't be difficult"), String::from("Yeah, I give it a week tops. I say we convene next Monday at the same time."));
+    hash_map.insert(String::from("goodbye"), String::from("see ya"));
 
     hash_map
 }
