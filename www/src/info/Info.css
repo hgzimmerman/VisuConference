@@ -1,0 +1,22 @@
+.InfoDescription {
+  position: fixed;
+  top: 65px;
+  right: 25px;
+  width: 480px;
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+  animation-name: FallInAnimation;
+  animation-duration: .7s;
+  animation-timing-function: ease-out;
+}
+
+.InfoIcon {
+  color: white !important;
+}
+
+
+@keyframes FallInAnimation {
+  0%   { top:-500px;}
+  100% { top: 65px;}
+}
