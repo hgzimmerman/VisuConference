@@ -9,7 +9,7 @@ export class SideNav extends React.Component {
 
   render() {
     return (
-        <div className="">
+        <div className="bg-dark SideNavBackground">
           <div className="SideNavTitle">
           Connected Users
           </div>

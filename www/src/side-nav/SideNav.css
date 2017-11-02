@@ -13,6 +13,10 @@
   background-color: gainsboro;
 }
 
+.SideNavBackground {
+  height:100%;
+}
+
 .UserListElement {
   border-bottom: solid 2px;
   list-style-type: none;
