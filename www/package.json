@@ -19,6 +19,7 @@
     "font-awesome": "^4.7.0",
     "install": "^0.10.1",
     "jquery": "^3.2.1",
+    "mespeak": "^2.0.1",
     "npm": "^5.4.1",
     "popper.js": "^1.12.5",
     "react": "^15.6.1",

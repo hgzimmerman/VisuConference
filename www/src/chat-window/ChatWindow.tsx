@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from "redux";
 import { AppUserMessage } from "../datatypes/message";
 import { Networking } from "../networking/fetchText";
 import { isUndefined } from "util";
-
+import { talk } from "../speech/speech";
 
 
 
@@ -38,6 +38,7 @@ let messageStore = createStore(
       case MessageStoreActionEnum.ADD_MESSAGE:
         let newList: Array<AppUserMessage> = state.listOfMessages.slice(0); // copy the existing list
         newList.push(action.message);
+        talk(action.message.text);
         // This currently adds a network-request message whenever a normal message is entered, it is an end goal for the network requests to happen when another event triggers it (ie a button, or detecting voice).
         Networking.fetchTrumpText(action.message.text).then(
           message => {
