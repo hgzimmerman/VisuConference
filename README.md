@@ -14,6 +14,23 @@ It will also impact hearing people by making them feel less uncomfortable workin
 # Demo Implementation
 
 We will be staying away from any speech recognition, instead opting to generate random text and sending it to the webapp at a fixed interval.
-If we find it feesable, when a laptop's microphone detects a loud enough noise, it may send a request to the backend for random text, although the fixed interval text-sending is easier to implement.
+~~If we find it feesable, when a laptop's microphone detects a loud enough noise, it may send a request to the backend for random text, although the fixed interval text-sending is easier to implement.~~
+We instead opted to send a response message when the user sends a message instead of detecting voice or sending at intervals.
 We do intend to integrate some text-to-speech system for user-generated messages entered in the app.
 We do intend to implement message editing.
+
+# Install, Build, and Run Instructions
+VisuConference is known to work on Unix-based systems, although technically nothing should prevent you from running it on Windows.
+To install, navigate to the directory you want to install this, and run `git clone <THIS_REPO_ADDRESS>`.
+
+To build the application for running locally, follow the following directions:
+* Install Node + Npm, as well as [Rust Nightly](https://www.rust-lang.org/en-US/install.html) newer than mid-October (the `cargo` build tool will be included when Rust is installed).
+* Navigate to the `www/` directory edit the `.env.production` file.
+* Comment out the address to `visuconference.mooo.com` and uncomment `localhost`. Close the file
+* From the `www/` directory, run `npm run build`. This will build the frontend and store the result in `www/build/`.
+* Navigate back up to the root directory of the project, and execute `cargo run --release`. This will build the backend server and run it.
+* Go to a web browser and navigate to `localhost:8000/`. You are now running the VisuConference App.
+
+
+If you don't want to install this locally, an example is running at http://visuconference.mooo.com:8000/.
+
