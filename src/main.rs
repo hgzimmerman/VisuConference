@@ -74,14 +74,38 @@ fn text_trump(text_request: TextRequest, chain: State<Mutex<ArcChain<String>>>, 
 fn build_files(file: PathBuf, cache: State<Mutex<Cache>> ) -> Option<RespondableFile> {
     let pathbuf: PathBuf = Path::new("www/build").join(file).to_owned();
     info!("getting file: {:?}", pathbuf);
-    cache.lock().unwrap().get(pathbuf)
+    match cache.try_lock() {
+        Ok(mut cache) => {
+            info!("Locked cache.");
+            cache.get(pathbuf)
+        },
+        Err(_) => {
+            info!("Could not lock cache, getting from FS");
+            match NamedFile::open(pathbuf).ok() {
+                Some(file) => Some(RespondableFile::from(file)),
+                None => None
+            }
+        }
+    }
 }
 
 #[get("/", rank=2)]
 fn index(cache: State<Mutex<Cache>>) -> Option<RespondableFile>{
     let pathbuf: PathBuf = Path::new("www/build/index.html").to_owned();
     info!("getting file: {:?}", pathbuf);
-    cache.lock().unwrap().get(pathbuf)
+    match cache.try_lock() {
+        Ok(mut cache) => {
+            info!("Locked cache.");
+            cache.get(pathbuf)
+        },
+        Err(_) => {
+            info!("Could not lock cache, getting from FS");
+            match NamedFile::open(pathbuf).ok() {
+                Some(file) => Some(RespondableFile::from(file)),
+                None => None
+            }
+        }
+    }
 }
 
 
@@ -164,7 +188,7 @@ fn main() {
     let normal_user_map: HashMap<String, String> = create_map();
     let mutexed_user_map: Mutex<HashMap<String, String >> = Mutex::new(normal_user_map);
 
-    let cache: Mutex<Cache> = Mutex::new(Cache::new(1024 * 1024 * 0));
+    let cache: Mutex<Cache> = Mutex::new(Cache::new(1024 * 1024 * 30));
 
 
     rocket::ignite()
