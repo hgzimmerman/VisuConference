@@ -78,8 +78,10 @@ fn build_files(file: PathBuf, cache: State<Mutex<Cache>> ) -> Option<Respondable
 }
 
 #[get("/", rank=2)]
-fn index() -> Redirect {
-    Redirect::to("/index.html")
+fn index(cache: State<Mutex<Cache>>) -> Option<RespondableFile>{
+    let pathbuf: PathBuf = Path::new("www/build/index.html").to_owned();
+    info!("getting file: {:?}", pathbuf);
+    cache.lock().unwrap().get(pathbuf)
 }
 
 
@@ -169,7 +171,7 @@ fn main() {
         .manage(mutexed_trump_chain)
         .manage(mutexed_user_map)
         .manage(cache)
-        .mount("/", routes![text_trump, build_files, /*index*/])
+        .mount("/", routes![text_trump, build_files, index])
 //        .attach(options)
         .launch();
 }

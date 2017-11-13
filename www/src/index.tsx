@@ -21,6 +21,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route exact={true} path={"/"} component={App}/>
+      <Route path={"/index.html"} component={App}/>
       <Route path={"/group"} component={SideNav}/>
     </Switch>
   </BrowserRouter>,
