@@ -169,7 +169,7 @@ fn main() {
         .manage(mutexed_trump_chain)
         .manage(mutexed_user_map)
         .manage(cache)
-        .mount("/", routes![text_trump, build_files, index])
+        .mount("/", routes![text_trump, build_files, /*index*/])
 //        .attach(options)
         .launch();
 }
