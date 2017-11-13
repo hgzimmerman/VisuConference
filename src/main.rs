@@ -19,6 +19,8 @@ extern crate time;
 extern crate log;
 extern crate simplelog;
 
+extern crate rocket_file_cache;
+
 //extern crate rocket_cors;
 
 //use rocket_cors::{AllowedOrigins, AllowedHeaders};
@@ -32,12 +34,13 @@ use rocket_contrib::{Json, Value};
 use std::sync::Mutex;
 use rocket::State;
 use rocket::http::Method;
-use rocket::response::NamedFile;
+use rocket::response::{NamedFile, Redirect};
 use std::path::{Path, PathBuf};
 use simplelog::{Config, TermLogger, WriteLogger, CombinedLogger, LogLevelFilter};
 use std::fs::File;
 use std::collections::HashMap;
 
+use rocket_file_cache::{Cache, RespondableFile};
 
 #[derive(FromForm)]
 struct TextRequest {
@@ -68,13 +71,15 @@ fn text_trump(text_request: TextRequest, chain: State<Mutex<ArcChain<String>>>, 
 
 /// Need to run `npm run build` to update the files for distribution.
 #[get("/<file..>", rank=4)]
-fn build_files(file: PathBuf) -> Option<NamedFile> {
-    NamedFile::open(Path::new("www/build/").join(file)).ok()
+fn build_files(file: PathBuf, cache: State<Mutex<Cache>> ) -> Option<RespondableFile> {
+    let pathbuf: PathBuf = Path::new("www/build").join(file).to_owned();
+    info!("getting file: {:?}", pathbuf);
+    cache.lock().unwrap().get(pathbuf)
 }
 
 #[get("/", rank=2)]
-fn index() -> Option<NamedFile> {
-    NamedFile::open(Path::new("www/build/index.html")).ok()
+fn index() -> Redirect {
+    Redirect::to("/index.html")
 }
 
 
@@ -157,9 +162,13 @@ fn main() {
     let normal_user_map: HashMap<String, String> = create_map();
     let mutexed_user_map: Mutex<HashMap<String, String >> = Mutex::new(normal_user_map);
 
+    let cache: Mutex<Cache> = Mutex::new(Cache::new(1024 * 1024 * 0));
+
+
     rocket::ignite()
         .manage(mutexed_trump_chain)
         .manage(mutexed_user_map)
+        .manage(cache)
         .mount("/", routes![text_trump, build_files, index])
 //        .attach(options)
         .launch();
