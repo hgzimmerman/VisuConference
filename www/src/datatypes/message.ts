@@ -38,7 +38,7 @@ export class AppUserMessage {
     return {
       text: text,
       user: 0,
-      username: "Yourself",
+      username: "You",
       flagged: false,
       uuid: uuid.create().toString(),
       editedBy: []
