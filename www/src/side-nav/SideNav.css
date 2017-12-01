@@ -8,8 +8,9 @@
 
 .SideNavTitle {
   text-align: center;
-  font-size: larger;
-  border-bottom: solid 2px;
+  font-size: x-large;
+  height: 44px;
+  border-bottom: solid 4px;
   background-color: gainsboro;
 }
 

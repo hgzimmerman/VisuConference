@@ -35,11 +35,13 @@ export class AddUserModalAndButton extends React.Component {
     return (
       <div>
         <Button onClick={this.toggle} className="AddUserIcon btn-light" id={"AddUser"}>
-          <FontAwesome name="plus"/>
-        </Button>
-        <UncontrolledTooltip placement="top" target={"AddUser"}>
           Invite Users
-        </UncontrolledTooltip>
+          {/*<FontAwesome name="plus"/>*/}
+          {/*<FontAwesome name="users"/>*/}
+        </Button>
+        {/*<UncontrolledTooltip placement="top" target={"AddUser"}>*/}
+          {/*Invite Users*/}
+        {/*</UncontrolledTooltip>*/}
 
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} >
@@ -49,7 +51,7 @@ export class AddUserModalAndButton extends React.Component {
             Share this link to invite another user to this chat:
             </div>
             <div className={"ShareLink"}>
-              VisuConference.com/chatrooms/12345
+              VisuConference.mooo.com/chatrooms/12345
             </div>
           </ModalBody>
         </Modal>
