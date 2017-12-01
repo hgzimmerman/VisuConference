@@ -17,9 +17,11 @@ export class AppUserMessage {
 
 
   public static fromIncomingUserMessage(message: IncomingUserMessage): AppUserMessage {
-    let username = "Helpful Collaborator"
-    if (message.user === 0) {
-      username = "unhelpful collaborator"
+    let username = "";
+    if (message.user === 1) {
+      username = "Unhelpful Collaborator";
+    } else if (message.user === 2) {
+      username = "Helpful Collaborator";
     }
 
     return {

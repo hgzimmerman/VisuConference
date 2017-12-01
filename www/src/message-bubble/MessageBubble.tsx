@@ -49,31 +49,39 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
       flaggedClass = " Flagged"; // Append the flagged status to the css classes
     }
 
+    // Its you
     if ( this.message.user === 0 ) {
       bubble = (
         <div className="MessageBubbleContainerRightWrapper">
           <div className="MessageBubbleVerticalAlignment" >
             <EditMessageModalAndButton message={this.message} />
-              <div className="MessageBubble GreenPill d-none d-sm-block">
-                {this.message.text}
-            </div>
-            <div className="FullWidthMessageBubble GreenPill d-sm-none ">
+            <div className="MessageBubble GreenPill d-none d-sm-block"  id={"TT_Below-" + this.message.uuid}>
               {this.message.text}
             </div>
+            <div className="FullWidthMessageBubble GreenPill d-sm-none" id={"TT_Below-" + this.message.uuid}>
+              {this.message.text}
+            </div>
+            <UncontrolledTooltip placement="bottom" target={"TT_Below-" + this.message.uuid}>
+              {this.message.username}
+            </UncontrolledTooltip>
           </div>
         </div>
       );
     } else if ( this.message.user === 1 ) {
-      // its someone else
+      // its unhelpful
       bubble = (
         <div className="MessageBubbleContainerLeftWrapper">
           <div className="MessageBubbleVerticalAlignment" >
-            <div className={"MessageBubble BluePill d-none d-sm-block" + flaggedClass}>
+            <div className={"MessageBubble BluePill d-none d-sm-block" + flaggedClass} id={"TT_Below-" + this.message.uuid}>
               {this.message.text}
             </div>
-            <div className={"FullWidthMessageBubble BluePill d-sm-none" + flaggedClass}>
+            <div className={"FullWidthMessageBubble BluePill d-sm-none" + flaggedClass} id={"TT_Below-" + this.message.uuid}>
               {this.message.text}
             </div>
+            <UncontrolledTooltip placement="bottom" target={"TT_Below-" + this.message.uuid}>
+              {this.message.username}
+            </UncontrolledTooltip>
+
 
             <div className="Icon" id={"TooltipLeft-" + this.message.uuid} onClick={this.flagMessage}>
                   <FontAwesome name="flag"/>
@@ -85,16 +93,20 @@ export class MessageBubble extends React.Component<MessageBubbleProps, object> {
         </div>
       );
     } else {
-      // its someone else
+      // its helpful
       bubble = (
           <div className="MessageBubbleContainerLeftWrapper">
             <div className="MessageBubbleVerticalAlignment" >
-              <div className={"MessageBubble PurplePill d-none d-sm-block" + flaggedClass}>
+              <div className={"MessageBubble PurplePill d-none d-sm-block" + flaggedClass} id={"TT_Below-" + this.message.uuid}>
                 {this.message.text}
               </div>
-              <div className={"FullWidthMessageBubble PurplePill d-sm-none" + flaggedClass}>
+              <div className={"FullWidthMessageBubble PurplePill d-sm-none" + flaggedClass} id={"TT_Below-" + this.message.uuid}>
                 {this.message.text}
               </div>
+
+              <UncontrolledTooltip placement="bottom" target={"TT_Below-" + this.message.uuid}>
+                {this.message.username}
+              </UncontrolledTooltip>
 
               <div className="Icon" id={"TooltipLeft-" + this.message.uuid} onClick={this.flagMessage}>
                 <FontAwesome name="flag"/>
