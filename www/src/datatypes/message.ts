@@ -10,15 +10,22 @@ export interface IncomingUserMessage {
 export class AppUserMessage {
   public text: string;
   public user: number;
+  public username: string;
   public flagged: boolean;
   public uuid: string;
   public editedBy: Array<number>;
 
 
   public static fromIncomingUserMessage(message: IncomingUserMessage): AppUserMessage {
+    let username = "Helpful Collaborator"
+    if (message.user === 0) {
+      username = "unhelpful collaborator"
+    }
+
     return {
       text: message.text,
       user: message.user,
+      username: username,
       flagged: false,
       uuid: uuid.create().toString(),
       editedBy: []
@@ -29,6 +36,7 @@ export class AppUserMessage {
     return {
       text: text,
       user: 0,
+      username: "Yourself",
       flagged: false,
       uuid: uuid.create().toString(),
       editedBy: []

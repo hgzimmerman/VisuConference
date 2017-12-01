@@ -15,6 +15,9 @@
   color: white !important;
 }
 
+.MyModal {
+  max-width: 650px;
+}
 
 @keyframes FallInAnimation {
   0%   { top:-500px;}
