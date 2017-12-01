@@ -77,14 +77,14 @@ export class ChatInput extends React.Component {
     if (this.state.isRecording) {
       recordingEntry = (
         <div className={"dropdown-item"} onClick={this.handleToggleRecording}>
-          Recording
+          Recording On
           <FontAwesome className="Icon" style={{color: "red"}} name="dot-circle-o"/>
       </div>
       );
     } else {
       recordingEntry = (
         <div className={"dropdown-item"} onClick={this.handleToggleRecording}>
-          Not Recording
+          Recording Off
           <FontAwesome className="Icon" style={{color: "gray"}} name="dot-circle-o"/>
       </div>
       );
